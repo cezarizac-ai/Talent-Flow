@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#111a2b" />
+  <meta name="description" content="Nexo Flow — operação de recrutamento e seleção, do currículo à decisão." />
+  <meta property="og:title" content="Nexo Flow — Do currículo à decisão" />
+  <meta property="og:description" content="Operação de recrutamento e seleção, da solicitação da vaga à admissão." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="__ORIGIN__/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nexo Flow — Do currículo à decisão" />
+  <meta name="twitter:description" content="Operação de recrutamento e seleção, da solicitação da vaga à admissão." />
+  <meta name="twitter:image" content="__ORIGIN__/og.png" />
+  <title>Nexo Flow — Do currículo à decisão</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <button class="sidebar-backdrop" id="sidebarBackdrop" aria-label="Fechar menu"></button>
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div><p class="brand-name">Nexo <strong>Flow</strong></p><p class="brand-tagline">Do currículo à decisão.</p></div>
+      </div>
+      <nav class="nav" aria-label="Navegação principal">
+        <p class="nav-label">Operação</p>
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">⌂</span>Visão geral</button>
+        <button class="nav-item" data-view="vacancies"><span class="nav-icon">▣</span>Vagas</button>
+        <button class="nav-item" data-view="candidates"><span class="nav-icon">◎</span>Candidatos</button>
+        <button class="nav-item" data-view="pipeline"><span class="nav-icon">≋</span>Pipeline</button>
+        <button class="nav-item" data-view="interviews"><span class="nav-icon">◇</span>Entrevistas</button>
+        <button class="nav-item" data-view="talent"><span class="nav-icon">✦</span>Banco de talentos</button>
+        <p class="nav-label nav-label-spaced">Gestão</p>
+        <button class="nav-item" data-view="salaries"><span class="nav-icon">▤</span>Cargos e salários</button>
+        <button class="nav-item" data-view="admissions"><span class="nav-icon">↗</span>Admissões</button>
+        <button class="nav-item" data-view="integrations"><span class="nav-icon">⎋</span>Integrações</button>
+        <button class="nav-item" data-view="settings"><span class="nav-icon">⚙</span>Configurações</button>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="avatar" id="avatar">RH</div>
+        <div><p id="profileName">Equipe de RH</p><span>Administrador RH</span></div>
+        <button aria-label="Opções do perfil">•••</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="menu-button" id="menuButton" aria-label="Abrir menu">☰</button>
+        <label class="search"><span>⌕</span><input id="globalSearch" placeholder="Buscar vaga, candidato ou gestor..." /><kbd>Ctrl K</kbd></label>
+        <div class="top-actions">
+          <button class="icon-button" aria-label="Notificações">○<span class="notification-dot"></span></button>
+          <button class="primary-button" id="quickCreate"><span>＋</span> Nova vaga</button>
+        </div>
+      </header>
+
+      <div class="content">
+        <section class="view active" id="overviewView">
+          <div class="page-heading">
+            <div><p class="eyebrow">PAINEL OPERACIONAL</p><h1>Bom dia, <span id="greetingName">Equipe</span></h1><p>Acompanhe o processo seletivo de ponta a ponta.</p></div>
+            <div class="date-chip">□ <span id="todayLabel">Hoje · São Paulo</span></div>
+          </div>
+          <section class="kpi-grid" aria-label="Indicadores principais">
+            <article class="kpi-card"><div class="kpi-icon blue"><span></span></div><div class="kpi-copy"><p>Vagas em andamento</p><strong id="kpiVacancies">0</strong><span>Operação ativa</span></div><button data-view-link="vacancies">↗</button></article>
+            <article class="kpi-card"><div class="kpi-icon violet"><span></span></div><div class="kpi-copy"><p>Candidatos no processo</p><strong id="kpiCandidates">0</strong><span>Candidaturas registradas</span></div><button data-view-link="candidates">↗</button></article>
+            <article class="kpi-card"><div class="kpi-icon green"><span></span></div><div class="kpi-copy"><p>Entrevistas hoje</p><strong id="kpiInterviews">0</strong><span>Agenda de hoje</span></div><button data-view-link="interviews">↗</button></article>
+            <article class="kpi-card"><div class="kpi-icon amber"><span></span></div><div class="kpi-copy"><p>Fora do SLA</p><strong id="kpiOverdue">0</strong><span>Vagas que exigem atenção</span></div><button data-view-link="vacancies">↗</button></article>
+          </section>
+          <section class="dashboard-grid">
+            <article class="panel agenda-panel">
+              <div class="panel-header"><div><p class="eyebrow">PRÓXIMOS COMPROMISSOS</p><h2>Agenda de entrevistas</h2></div><button class="text-button" data-view-link="interviews">Ver agenda →</button></div>
+              <div class="empty-state" id="agendaEmpty"><div class="empty-icon">◇</div><h3>Sua agenda está livre</h3><p>Quando uma entrevista for agendada, ela aparecerá aqui com candidato, vaga e horário.</p><button class="secondary-button" data-view-link="interviews">Abrir agenda</button></div>
+            </article>
+            <article class="panel attention-panel">
+              <div class="panel-header"><div><p class="eyebrow">PRIORIDADES</p><h2>Precisa de atenção</h2></div><span class="count-badge" id="attentionCount">0</span></div>
+              <div class="attention-empty"><div class="success-mark">✓</div><h3>Tudo em dia</h3><p>Nenhuma pendência operacional no momento.</p></div>
+            </article>
+            <article class="panel flow-panel">
+              <div class="panel-header"><div><p class="eyebrow">FLUXO PRINCIPAL</p><h2>Da solicitação à admissão</h2></div><span class="status-pill">Estrutura pronta</span></div>
+              <div class="process-flow">
+                <div class="flow-step"><span>01</span><p>Solicitação</p><i></i></div><div class="flow-step"><span>02</span><p>Vaga</p><i></i></div><div class="flow-step"><span>03</span><p>Triagem</p><i></i></div><div class="flow-step"><span>04</span><p>Entrevista</p><i></i></div><div class="flow-step"><span>05</span><p>Parecer</p><i></i></div><div class="flow-step"><span>06</span><p>Decisão</p><i></i></div><div class="flow-step"><span>07</span><p>Admissão</p></div>
+              </div>
+            </article>
+          </section>
+        </section>
+
+        <section class="view" id="vacanciesView">
+          <div class="module-heading"><div><p class="eyebrow">GESTÃO DE VAGAS</p><h1>Vagas</h1><p>Solicitações, critérios, SLA e histórico em um só lugar.</p></div><button class="primary-button" data-open-modal="vacancy">＋ Nova vaga</button></div>
+          <div class="filter-bar"><label>⌕ <input data-filter="vacancies" placeholder="Buscar por cargo, departamento ou gestor" /></label><select id="vacancyStatusFilter"><option value="">Todos os status</option><option value="draft">Em preparação</option><option value="open">Aberta</option><option value="paused">Pausada</option><option value="closed">Fechada</option></select></div>
+          <div class="data-panel"><div class="table-head vacancies-head"><span>Vaga</span><span>Gestor</span><span>Origem</span><span>SLA</span><span>Status</span></div><div id="vacanciesList"></div><div class="module-empty" id="vacanciesEmpty"><div class="empty-icon">▣</div><h3>Nenhuma vaga registrada</h3><p>Crie a primeira vaga ou conecte o Microsoft Forms para receber solicitações automaticamente.</p><button class="secondary-button" data-open-modal="vacancy">Criar primeira vaga</button></div></div>
+        </section>
+
+        <section class="view" id="candidatesView">
+          <div class="module-heading"><div><p class="eyebrow">PESSOAS E CANDIDATURAS</p><h1>Candidatos</h1><p>O perfil da pessoa é único; cada candidatura mantém seu próprio histórico.</p></div><button class="primary-button" data-open-modal="candidate">＋ Novo candidato</button></div>
+          <div class="filter-bar"><label>⌕ <input data-filter="candidates" placeholder="Buscar por nome, e-mail ou vaga" /></label><span class="privacy-note">Dados pessoais protegidos</span></div>
+          <div class="data-panel"><div class="table-head candidates-head"><span>Candidato</span><span>Vaga</span><span>Origem</span><span>Etapa</span><span>Atualização</span></div><div id="candidatesList"></div><div class="module-empty" id="candidatesEmpty"><div class="empty-icon">◎</div><h3>Nenhum candidato recebido</h3><p>Registre um candidato ou conecte o formulário de inscrição. Currículos e experiências só aparecem quando houver dados reais.</p><button class="secondary-button" data-open-modal="candidate">Adicionar candidato</button></div></div>
+        </section>
+
+        <section class="view" id="pipelineView">
+          <div class="module-heading"><div><p class="eyebrow">PIPELINE OPERACIONAL</p><h1>Pipeline de candidaturas</h1><p>Movimentações registradas por candidatura, com rastreabilidade de etapa.</p></div><select id="pipelineVacancyFilter"><option value="">Todas as vagas</option></select></div>
+          <div class="kanban" id="pipelineBoard"></div>
+        </section>
+
+        <section class="view" id="interviewsView">
+          <div class="module-heading"><div><p class="eyebrow">AGENDA OPERACIONAL</p><h1>Entrevistas</h1><p>RH, gestor e técnica, com datas exibidas no horário de São Paulo.</p></div><button class="primary-button" id="scheduleInterview">＋ Agendar entrevista</button></div>
+          <div class="calendar-strip"><button>‹</button><div id="weekDays"></div><button>›</button></div>
+          <div class="module-empty large"><div class="empty-icon">◇</div><h3>Nenhuma entrevista agendada</h3><p>Escolha uma candidatura para registrar tipo, entrevistador, modalidade e horário.</p><button class="secondary-button" data-view-link="candidates">Ver candidatos</button></div>
+        </section>
+
+        <section class="view" id="talentView">
+          <div class="module-heading"><div><p class="eyebrow">RELACIONAMENTO</p><h1>Banco de talentos</h1><p>Histórico de participação, interesse atual e observações do RH sem inventar compatibilidade.</p></div></div>
+          <div class="module-empty large"><div class="empty-icon">✦</div><h3>Banco de talentos vazio</h3><p>Candidatos movidos para esta etapa aparecerão com o histórico de candidaturas anteriores.</p></div>
+        </section>
+
+        <section class="view" id="salariesView">
+          <div class="module-heading"><div><p class="eyebrow">REFERÊNCIA CORPORATIVA</p><h1>Cargos e salários</h1><p>Catálogo em leitura e sincronização com a fonte corporativa.</p></div><span class="status-pill neutral">Fonte não conectada</span></div>
+          <div class="module-empty large"><div class="empty-icon">▤</div><h3>Catálogo ainda não sincronizado</h3><p>Conecte a planilha corporativa como fonte mestre. O Nexo Flow não criará valores fictícios.</p><button class="secondary-button" data-view-link="integrations">Configurar fonte</button></div>
+        </section>
+
+        <section class="view" id="admissionsView">
+          <div class="module-heading"><div><p class="eyebrow">PÓS-APROVAÇÃO</p><h1>Admissões</h1><p>Acompanhe documentação, ASO, contrato e início após a decisão do gestor.</p></div></div>
+          <div class="module-empty large"><div class="empty-icon">↗</div><h3>Nenhuma admissão em andamento</h3><p>Candidatos aprovados poderão ser encaminhados para esta etapa com os dados essenciais da vaga.</p></div>
+        </section>
+
+        <section class="view" id="integrationsView">
+          <div class="module-heading"><div><p class="eyebrow">ENTRADAS E AUTOMAÇÕES</p><h1>Integrações</h1><p>Conecte as fontes existentes sem criar dois mestres para o mesmo dado.</p></div></div>
+          <div class="integration-grid">
+            <article class="integration-card" data-provider="microsoft"><div class="integration-logo microsoft">M</div><div><h2>Microsoft Forms</h2><p>Solicitações originais de vagas via Power Automate.</p></div><span class="status-pill neutral integration-status">Carregando</span><ul><li>Webhook autenticado por chave</li><li>Idempotência por Response ID</li><li><span class="integration-count">0</span> eventos processados</li></ul><div class="integration-meta">Nenhum evento recebido</div><button class="secondary-button integration-config" data-config-provider="microsoft">Configurar webhook</button></article>
+            <article class="integration-card" data-provider="google"><div class="integration-logo google">G</div><div><h2>Google Forms</h2><p>Inscrições de candidatos e referência do currículo.</p></div><span class="status-pill neutral integration-status">Carregando</span><ul><li>Candidato e candidatura separados</li><li>Payload original preservado</li><li><span class="integration-count">0</span> eventos processados</li></ul><div class="integration-meta">Nenhum evento recebido</div><button class="secondary-button integration-config" data-config-provider="google">Configurar webhook</button></article>
+            <article class="integration-card" data-provider="documents"><div class="integration-logo storage">O</div><div><h2>OneDrive / SharePoint</h2><p>Metadados de documentos enviados por Power Automate.</p></div><span class="status-pill neutral integration-status">Carregando</span><ul><li>Arquivo original permanece no Microsoft 365</li><li>Referência vinculada ao candidato</li><li><span class="integration-count">0</span> eventos processados</li></ul><div class="integration-meta">Nenhum evento recebido</div><button class="secondary-button integration-config" data-config-provider="documents">Configurar webhook</button></article>
+          </div>
+        </section>
+
+        <section class="view" id="settingsView">
+          <div class="module-heading"><div><p class="eyebrow">GOVERNANÇA</p><h1>Configurações</h1><p>Perfis, status, SLA, modelos de comunicação e auditoria.</p></div></div>
+          <div class="settings-grid"><article><h2>Perfis e acessos</h2><p>Administrador/RH, recrutador e gestor com acesso associado às vagas.</p><button>Gerenciar</button></article><article><h2>Status do processo</h2><p>Etapas canônicas para vagas, candidaturas e entrevistas.</p><button>Visualizar</button></article><article><h2>SLA e horários</h2><p>Datas operacionais em America/Sao_Paulo e prazos por prioridade.</p><button>Configurar</button></article><article><h2>Auditoria e LGPD</h2><p>Rastreabilidade, mínimo privilégio e proteção de dados pessoais.</p><button>Revisar</button></article></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal" id="vacancyModal" role="dialog" aria-modal="true" aria-labelledby="vacancyTitle">
+    <div class="modal-backdrop" data-close-modal></div><form class="modal-card" id="vacancyForm"><div class="modal-header"><div><p class="eyebrow">NOVA VAGA</p><h2 id="vacancyTitle">Criar vaga operacional</h2></div><button type="button" data-close-modal aria-label="Fechar">×</button></div><div class="form-grid"><label class="full">Cargo<input name="title" required placeholder="Ex.: Analista de RH" /></label><label>Departamento<input name="department" required /></label><label>Gestor<input name="manager" required /></label><label>Quantidade<input name="quantity" type="number" min="1" value="1" required /></label><label>Prioridade<select name="priority"><option value="normal">Normal</option><option value="high">Alta</option><option value="urgent">Urgente</option></select></label><label>Status<select name="status"><option value="draft">Em preparação</option><option value="open">Aberta</option></select></label><label>Origem<select name="source"><option value="manual">Manual</option><option value="microsoft_forms">Microsoft Forms</option></select></label><label class="full">Motivo da abertura<textarea name="reason" rows="3" placeholder="Registre apenas informações reais disponíveis."></textarea></label></div><div class="modal-actions"><button type="button" class="ghost-button" data-close-modal>Cancelar</button><button type="submit" class="primary-button">Salvar vaga</button></div></form>
+  </div>
+
+  <div class="modal" id="candidateModal" role="dialog" aria-modal="true" aria-labelledby="candidateTitle">
+    <div class="modal-backdrop" data-close-modal></div><form class="modal-card" id="candidateForm"><div class="modal-header"><div><p class="eyebrow">NOVO CANDIDATO</p><h2 id="candidateTitle">Registrar candidato</h2></div><button type="button" data-close-modal aria-label="Fechar">×</button></div><div class="form-grid"><label class="full">Nome completo<input name="full_name" required /></label><label>E-mail<input name="email" type="email" required /></label><label>Telefone / WhatsApp<input name="phone" /></label><label class="full">Vaga<select name="vacancy_id" id="candidateVacancy"><option value="">Sem vaga vinculada</option></select></label><label>Origem<select name="source"><option value="manual">Manual</option><option value="google_forms">Google Forms</option></select></label><label>Consentimento banco de talentos<select name="talent_consent"><option value="0">Não informado</option><option value="1">Sim</option><option value="0">Não</option></select></label><div class="form-note full">Currículo, experiência e competências serão exibidos apenas após o recebimento de dados reais.</div></div><div class="modal-actions"><button type="button" class="ghost-button" data-close-modal>Cancelar</button><button type="submit" class="primary-button">Salvar candidato</button></div></form>
+  </div>
+
+  <div class="modal" id="integrationModal" role="dialog" aria-modal="true" aria-labelledby="integrationTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <form class="modal-card" id="integrationForm">
+      <div class="modal-header"><div><p class="eyebrow">INTEGRAÇÃO SEGURA</p><h2 id="integrationTitle">Configurar webhook</h2></div><button type="button" data-close-modal aria-label="Fechar">×</button></div>
+      <div class="integration-form-body">
+        <div class="endpoint-box"><span>Endpoint</span><div><input id="integrationEndpoint" readonly /><button type="button" id="copyEndpoint">Copiar</button></div></div>
+        <label class="secret-field">Chave x-api-key<input id="integrationKey" name="api_key" type="password" minlength="32" autocomplete="new-password" required placeholder="Use pelo menos 32 caracteres" /></label>
+        <p class="security-copy">A chave é enviada por conexão segura e armazenada somente como hash. O Nexo Flow não poderá mostrá-la novamente.</p>
+        <div class="integration-instructions" id="integrationInstructions"></div>
+      </div>
+      <div class="modal-actions"><button type="button" class="ghost-button" data-close-modal>Cancelar</button><button type="submit" class="primary-button">Salvar configuração</button></div>
+    </form>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
